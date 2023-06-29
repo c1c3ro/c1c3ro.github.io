@@ -1,49 +1,30 @@
-function major() {
-    document.getElementById("major").classList.toggle("show");
-    closeAllOthers("major");
-}
+function scrollFunction() {
 
-function cups() {
-    document.getElementById("cups").classList.toggle("show");
-    closeAllOthers("cups");
-}
-
-function swords() {
-    document.getElementById("swords").classList.toggle("show");
-    closeAllOthers("swords");
-}
-
-function wands() {
-    document.getElementById("wands").classList.toggle("show");
-    closeAllOthers("wands");
-}
-
-function pentacles() {
-    document.getElementById("pentacles").classList.toggle("show");
-    closeAllOthers("pentacles");
-}
-
-function closeAllOthers(active){
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show') && openDropdown.id != active) {
-            openDropdown.classList.remove('show');
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        $("#header").css("background-color", "#4b0412");
+        $("#navbar-logo").attr("src", "https://cdn.nad-edu.com.br/wp-content/uploads/2020/02/logo_oficial_branca_compress.png");
+        if (screen.availWidth > 992){
+            $(".nav-link").addClass("scroll");
+        } else {
+            $("#navbar-toggle").css("color", "#fff");
+            if ($(".nav-link").hasClass("scroll")){
+                $(".nav-link").removeClass("scroll");
+            }
         }
-    }
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+    } else {
+        $("#header").css("background-color", "#fff");
+        $("#navbar-logo").attr("src", "https://cdn.nad-edu.com.br/wp-content/uploads/2021/07/Logo-vermelha-230x90.png");
+        if (screen.availWidth > 992){
+            $(".nav-link").removeClass("scroll");
+        } else {
+            $("#navbar-toggle").css("color", "#4b0412");
+            if ($(".nav-link").hasClass("scroll")){
+                $(".nav-link").removeClass("scroll");
             }
         }
     }
 }
+
+$(function() {
+    window.onscroll = function() {scrollFunction()};
+});
