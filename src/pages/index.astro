@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-//import Card from '../components/Card.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Layout title="Núcleo Avançado de Desenvolvimento"> 
@@ -70,7 +70,6 @@ import Layout from '../layouts/Layout.astro';
 			  <button class="polo-button btn py-2 px-3" href="#!">Acessar</button>
 			</div>
 		  </div>
-	
 		</div>
 	
 		<div class="container-fluid py-5 text-center contato-area">
@@ -81,30 +80,15 @@ import Layout from '../layouts/Layout.astro';
 		  </div>
 		  <div class="row my-5">
 			<div class="col-12 col-md-4">
-			  <div class="card text-bg-light mb-3 mx-auto" style="max-width: 18rem;">
-				<div class="card-body">
-				  <span class="card-icon"><i class="bi bi-whatsapp"></i></span>
-				  <p class="card-text mt-3"><a href="#">(88) 2155-1646</a></p>
-				</div>
-			  </div>
-			  <div class="card text-bg-light mb-3 mx-auto" style="max-width: 18rem;">
-				<div class="card-body">
-				  <span class="card-icon"><i class="bi bi-geo-alt-fill"></i></span>
-				  <p class="card-text mt-3"><a href="#">Rua Catulo da Paixão Cearense, nº 175, sala 1306</a></p>
-				</div>
-			  </div>
-			  <div class="card text-bg-light mb-3 mx-auto" style="max-width: 18rem;">
-				<div class="card-body">
-				  <span class="card-icon"><i class="bi bi-telephone-fill"></i></span>
-				  <p class="card-text mt-3"><a href="#">(88) 2131-9977</a></p>
-				</div>
-			  </div>
-			  <div class="card text-bg-light mb-3 mx-auto" style="max-width: 18rem;">
-				<div class="card-body">
-				  <span class="card-icon"><i class="bi bi-envelope"></i></span>
-				  <p class="card-text mt-3"><a href="#">atendimento@nad-edu.com.br</a></p>
-				</div>
-			  </div>
+
+				<Card href='#' icon="bi bi-whatsapp" body='(88) 2155-1646'/>
+
+				<Card href='#' icon="bi bi-geo-alt-fill" body='Rua Catulo da Paixão Cearense, nº 175, sala 1306'/>
+			
+				<Card href='#' icon="bi bi-telephone-fill" body='(88) 2131-9977'/>
+
+				<Card href='#' icon="bi bi-envelope" body='atendimento@nad-edu.com.br'/>
+
 			</div>
 			<div class="col-12 col-md-8 text-start mt-2 mt-md-0">
 			  <p class="pt-2" style="font-weight: 500; font-size: 14px;"> Campos marcados com <span class="obrigatorio">*</span> são obrigatórios. </p>
@@ -185,21 +169,6 @@ import Layout from '../layouts/Layout.astro';
 		opacity: 1;
 	}
 
-	.card{
-		background-color: RGBA(248,249,250,0.5)!important;
-		border: 2px solid #E5E5E5;
-	}
-
-	.card-icon{
-		font-size: 40px;
-		color: #4d4d4d;
-	}
-
-	.card-text a{
-		text-decoration: none;
-		color: #af0c32;
-	}
-
 	.obrigatorio{
 		color: red;
 	}
@@ -227,10 +196,7 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	@media (min-width: 768px) {
-		.card{
-			margin-right: 0 !important;
-			margin-left: auto !important;
-		}
+		/* medium breakpoint */
 	}
 </style>
  
