@@ -31,7 +31,7 @@ const { title } = Astro.props;
 			<nav id="header" class="navbar navbar-expand-lg py-md-4">
 			  <div class="container-fluid">
 				<a class="navbar-brand mx-2 ms-md-3 ms-lg-5" href="#">
-				  <img id="navbar-logo" src="https://cdn.nad-edu.com.br/wp-content/uploads/2021/07/Logo-vermelha-230x90.png" alt="" width="200" height="auto">
+				  <img id="navbar-logo" src="https://cdn.nad-edu.com.br/wp-content/uploads/2020/02/logoOficial.png" alt="" width="200" height="auto">
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
 				  <i id="navbar-toggle" class="bi bi-list"></i>
@@ -56,7 +56,7 @@ const { title } = Astro.props;
 						  <li><a class="dropdown-item" href="#">Enfermagem em Obstetrícia</a></li>
 						</ul>
 					  </li>
-					  <li class="nav-item dropdown">
+					  <li class="nav-item dropdown text-center">
 						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">CURSOS DE EXTENSÃO</a>
 						<ul class="dropdown-menu text-center">
 						  <li><a class="dropdown-item" href="#">Medicina</a></li>
@@ -64,11 +64,20 @@ const { title } = Astro.props;
 						  <li><a class="dropdown-item" href="#">Enfermagem</a></li>
 						</ul>
 					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="#">RECRUTAMENTO & SELEÇÃO</a>
+					  <li class="nav-item dropdown text-center">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">RECRUTAMENTO & SELEÇÃO</a>
+						<ul class="dropdown-menu text-center">
+						  <li><a class="dropdown-item" href="#">Cadastro do Candidato</a></li>
+						  <li><a class="dropdown-item" href="#">R&S - Editais</a></li>
+						  <li><a class="dropdown-item" href="#">Resultados</a></li>
+						</ul>
 					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" href="#">ALUNO</a>
+					  <li class="nav-item dropdown text-center">
+						<a style="font-weight: bold;" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">ALUNO</a>
+						<ul class="dropdown-menu text-center">
+						  <li><a class="dropdown-item" href="#">Sistema Acadêmico</a></li>
+						  <li><a class="dropdown-item" href="#">Requerimento</a></li>
+						</ul>
 					  </li>
 					</ul>
 				  </div>
@@ -122,7 +131,7 @@ const { title } = Astro.props;
 					}
 				} else {
 					$("#header").css("background-color", "#fff");
-					$("#navbar-logo").attr("src", "https://cdn.nad-edu.com.br/wp-content/uploads/2021/07/Logo-vermelha-230x90.png");
+					$("#navbar-logo").attr("src", "https://cdn.nad-edu.com.br/wp-content/uploads/2020/02/logoOficial.png");
 					if (screen.availWidth > 992){
 						$(".nav-link").removeClass("scroll");
 					} else {
@@ -163,11 +172,12 @@ const { title } = Astro.props;
 	#header {
 		background-color: white;
 		transition: 0.5s;
+		padding: 16px 0px;
 		/*line-height: 14px;*/
 	}
 
 	#spacer{
-		height: 73px;
+		height: 74.4px;
 	}
 
 	#navbar-toggle{
@@ -202,8 +212,8 @@ const { title } = Astro.props;
     color: #ffffffdd;
 	}
 
-	.scroll:focus, .scroll:hover {
-		color: #fff;
+	.scroll:focus, .scroll:hover, .scroll:active {
+		color: #fff !important;
 	}
 
 	.footer-logo{
@@ -230,7 +240,11 @@ const { title } = Astro.props;
 
 	@media (min-width: 768px) {
 		#spacer{
-			height: 105px;
+			height: 90px;
+		}
+
+		#navbar-menu {
+		padding-right: 90px;
 		}
 
 		.nav-item {
