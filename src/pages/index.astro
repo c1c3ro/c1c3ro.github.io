@@ -92,26 +92,26 @@ import Card from '../components/Card.astro';
 			</div>
 			<div class="col-12 col-md-8 text-start mt-2 mt-md-0">
 			  <p class="pt-2" style="font-weight: 500; font-size: 14px;"> Campos marcados com <span class="obrigatorio">*</span> são obrigatórios. </p>
-			  <form action="" method="post">
+			  <form action="https://script.google.com/macros/s/AKfycbz9m5HZ9tr3ObEpIxcSq6qa7JEPUCxwyUsIZE97w1yH5g7og4L_CbdHdPTXki-9g64M/exec" method="POST">
 				<div class="col-12 col-md-6 mb-3">
 				  <label for="exampleFormControlInput1" class="form-label">Nome: <span class="obrigatorio">*</span></label>
-				  <input type="text" class="form-control" id="exampleFormControlInput1" required>
+				  <input name="Nome" type="text" class="form-control" id="exampleFormControlInput1" required>
 				</div>
 				<div class="col-12 col-md-6 mb-3">
-				  <label for="exampleFormControlInput2" class="form-label">E-mail: <span class="obrigatorio">*</span></label>
-				  <input type="email" class="form-control" id="exampleFormControlInput2" required>
+				  <label for="exampleFormControlInput2" class="form-label">E-mail: <span class="obrigatorio">*</span></label> 
+				  <input name="Email" type="email" class="form-control" id="exampleFormControlInput2" required>
 				</div>
 				<div class="col-12 col-md-6 mb-3">
 				  <label for="exampleFormControlInput3" class="form-label">Telefone: <span class="obrigatorio">*</span></label>
-				  <input type="text" class="form-control" id="exampleFormControlInput3" required>
+				  <input name="Telefone" type="tel" class="form-control" id="exampleFormControlInput3" required>
 				</div>
 				<div class="col-12 col-md-6 mb-3">
 				  <label for="exampleFormControlInput4" class="form-label">Assunto: </label>
-				  <input type="email" class="form-control" id="exampleFormControlInput4">
+				  <input name="Assunto" type="text" class="form-control" id="exampleFormControlInput4">
 				</div>
 				<div class="col-12 col-md-8 mb-3">
 				  <label for="exampleFormControlTextarea1" class="form-label">Mensagem: <span class="obrigatorio">*</span></label>
-				  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+				  <textarea name="Mensagem" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
 				</div>
 				<button type="submit" class="btn btn-form py-2 px-3">Enviar</button>
 			  </form>
