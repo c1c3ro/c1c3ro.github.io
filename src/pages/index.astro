@@ -92,7 +92,7 @@ import Card from '../components/Card.astro';
 			</div>
 			<div class="col-12 col-md-8 text-start mt-2 mt-md-0">
 			  <p class="pt-2" style="font-weight: 500; font-size: 14px;"> Campos marcados com <span class="obrigatorio">*</span> são obrigatórios. </p>
-			  <form action="https://script.google.com/macros/s/AKfycbz9m5HZ9tr3ObEpIxcSq6qa7JEPUCxwyUsIZE97w1yH5g7og4L_CbdHdPTXki-9g64M/exec" method="POST">
+			  <form id="contact">
 				<div class="col-12 col-md-6 mb-3">
 				  <label for="exampleFormControlInput1" class="form-label">Nome: <span class="obrigatorio">*</span></label>
 				  <input name="Nome" type="text" class="form-control" id="exampleFormControlInput1" required>
@@ -127,6 +127,33 @@ import Card from '../components/Card.astro';
 		  </div>
 		</div>
 	</main>
+
+	<script>
+		var form = document.getElementById("contact");
+		form.addEventListener("submit", ajaxpost);
+		function ajaxpost(event) {
+			event.preventDefault();
+			// (A) GET FORM DATA
+			var data = new FormData(document.getElementById("contact"));
+			
+			// (B) AJAX REQUEST
+			// (B1) POST DATA TO SERVER, RETURN RESPONSE AS TEXT
+			fetch("https://script.google.com/macros/s/AKfycbz9m5HZ9tr3ObEpIxcSq6qa7JEPUCxwyUsIZE97w1yH5g7og4L_CbdHdPTXki-9g64M/exec", { method:"POST", body:data })
+			.then(res => res.json())
+			
+			// (B2) SHOW MESSAGE ON SERVER RESPONSE
+			.then(response => {
+				if (response.result == "success") { alert("Sucesso! Entraremos em contato em breve."); }
+				else { alert("Algo deu errado :( \nPor favor, recarregue a página e tente novamente."); }
+			})
+			
+			// (B3) OPTIONAL - HANDLE FETCH ERROR
+			.catch(err => console.error(err));
+			
+			// (C) PREVENT FORM SUBMIT
+			return false;
+		}
+	</script>
 </Layout>
 
 <style>
@@ -181,6 +208,11 @@ import Card from '../components/Card.astro';
 	.btn-form{
 		color: #fff;
 		background-color: #333;
+	}
+
+	.btn-form:focus, .btn-form:hover, .btn-form:active {
+		color: #fff !important;
+		background-color: #555 !important;
 	}
 
 	@media (min-width: 500px) {
