@@ -113,7 +113,11 @@ import Card from '../components/Card.astro';
 				  <label for="exampleFormControlTextarea1" class="form-label">Mensagem: <span class="obrigatorio">*</span></label>
 				  <textarea name="Mensagem" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
 				</div>
-				<button type="submit" class="btn btn-form py-2 px-3">Enviar</button>
+				<button type="submit" class="btn btn-form py-2 px-3">
+					<span id="button-text" role="status">Enviar</span>
+					<span id="load-spinner" class="spinner-border spinner-border-sm visually-hidden" aria-hidden="true"></span>
+  					<span id="load-text" class="visually-hidden" role="status">Enviando...</span>
+				</button>
 			  </form>
 			</div>
 		  </div>
@@ -133,23 +137,36 @@ import Card from '../components/Card.astro';
 		form.addEventListener("submit", ajaxpost);
 		function ajaxpost(event) {
 			event.preventDefault();
+			document.getElementById("load-spinner").classList.toggle("visually-hidden");
+			document.getElementById("load-text").classList.toggle("visually-hidden");
+			document.getElementById("button-text").classList.toggle("visually-hidden");
+
 			// (A) GET FORM DATA
-			var data = new FormData(document.getElementById("contact"));
+			var data = new FormData(form);
 			
 			// (B) AJAX REQUEST
 			// (B1) POST DATA TO SERVER, RETURN RESPONSE AS TEXT
-			fetch("https://script.google.com/macros/s/AKfycbz9m5HZ9tr3ObEpIxcSq6qa7JEPUCxwyUsIZE97w1yH5g7og4L_CbdHdPTXki-9g64M/exec", { method:"POST", body:data })
+			fetch("https://script.google.com/macros/s/AKfycbz9m5HZ9tr3ObEpIxcSq6qa7JEPUCxwyUsIZE97w1yH5g7og4L_CbdHdPTXki-9g64M/exec", 
+			{ method:"POST", body:data })
 			.then(res => res.json())
 			
 			// (B2) SHOW MESSAGE ON SERVER RESPONSE
 			.then(response => {
-				if (response.result == "success") { alert("Sucesso! Entraremos em contato em breve."); }
+				
+				document.getElementById("load-spinner").classList.toggle("visually-hidden");
+				document.getElementById("load-text").classList.toggle("visually-hidden");
+				document.getElementById("button-text").classList.toggle("visually-hidden");
+
+				if (response.result == "success") { 
+					form.reset(); 
+					alert("Sucesso! Entraremos em contato em breve."); 
+				}
 				else { alert("Algo deu errado :( \nPor favor, recarregue a página e tente novamente."); }
 			})
 			
 			// (B3) OPTIONAL - HANDLE FETCH ERROR
 			.catch(err => console.error(err));
-			
+
 			// (C) PREVENT FORM SUBMIT
 			return false;
 		}
