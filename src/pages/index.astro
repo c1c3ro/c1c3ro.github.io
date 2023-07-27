@@ -143,6 +143,7 @@ import Card from '../components/Card.astro';
 
 			// (A) GET FORM DATA
 			var data = new FormData(form);
+			data.append('From', 'nadclone');
 			
 			// (B) AJAX REQUEST
 			// (B1) POST DATA TO SERVER, RETURN RESPONSE AS TEXT
