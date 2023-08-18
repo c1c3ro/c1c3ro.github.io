@@ -1,9 +1,170 @@
 ---
+import Layout from '../components/Layout.astro';
+import { WHATSAPP_LINK } from '../consts';
+
+const title="Conheça nossos Eventos e Pós Graduações";
+const ogImage = "";
 
 ---
 
-<div style="height:100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px">
-    <a href="/enfermagem-obstetricia-lead"> Obstetricia </a>
-    <a href="/fisioterapia-uti-lead"> Fisioterapia UTI </a>
-    <a href="/enfermagem-uti-lead"> Enfermagem UTI </a>
-</div>
+<Layout title={title} ogImage={ogImage}>
+	<div class="bg-grey">
+		<header class="p-4">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12 text-center">
+						<img id="navbar-logo" class="" src="/Logo-vermelha-230x90.webp" alt="">
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<main>
+			<div class="container-fluid px-0 mx-0">
+				<div class="row py-4 py-md-5">
+					<div class="col pb-2 text-center">
+						<h1 class="title-default"> PÓS-GRADUAÇÕES </h1>
+					</div>
+				</div>
+				<div class="row justify-content-center gx-0 gy-4">
+					<div class="col-12 col-md-6 text-center">
+						<a href="/fisioterapia-uti-lead">
+						<img class="img-default" src="	https://cdn.nad-edu.com.br/wp-content/uploads/2023/08/Fisio-UTI-ADULTO.webp" alt=""></a>
+					</div>
+					<div class="col-12 col-md-6 text-center">
+						<a href="/enfermagem-uti-lead">
+						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/Enf.-UTI-ADULTO.jpg" alt=""></a>
+					</div>
+					<div class="col-12 col-md-6 text-center">
+						<a href="/enfermagem-obstetricia-lead">
+						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/Enf.-Obs.jpg" alt=""></a>
+					</div>
+					<div class="col-12 col-md-6 text-center">
+						<a href="/fisioterapia-pedneo-lead">
+						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-01-at-14.31.04.jpeg" alt=""></a>
+					</div>
+					<div class="col-12 col-md-6 text-center">
+						<a href="/enfermagem-pedneo-lead">
+						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-01-at-14.31.03.jpeg" alt=""></a>
+					</div>
+					
+				</div>
+			</div>
+		</main>
+		
+		<footer class="pt-5">
+			<div class="row py-2 px-2">
+				<div class="col-12 col-md-6 text-center text-md-start py-3">
+					<p class="informacao"> Maiores informações: </p>
+					<p class="informacao"> <i class="fa-brands fa-whatsapp social"></i> <span style="font-size: 0.8rem;">88</span> <strong>2131-9977</strong></p>
+				</div>
+				<div class="col-12 col-md-6 text-center text-md-end my-auto">
+					<p class="informacao">
+					<a href="https://www.facebook.com/nadcariri/?locale=pt_BR"><i class="fa-brands fa-facebook social"></i></a>
+					<a href="https://www.instagram.com/nadcariri/"><i class="fa-brands fa-instagram social px-1"></i></a>
+					<span style="font-size: 1.1rem;"><strong>@nad</strong>cariri</span></p>
+				</div>
+			</div>
+			<div class="row py-2 px-2">
+				<div class="col text-center">
+					<p>
+						2023 - Todos os direitos reservados - Núcleo Avançado de Desenvolvimento Empresarial e Profissional LTDA | CNPJ: 30.499.835/0001-07
+					</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+	
+</Layout>
+
+<style>
+
+	.bg-grey{
+		background-color: transparent;
+    	background-image: linear-gradient(180deg,#fff 0,#dedede 100%);
+	}
+
+	main {
+		margin: auto;
+		padding: 0.5rem;
+	}
+
+	p {
+		line-height: 1.2em;
+	}
+
+	#navbar-logo {
+		width: 200px;
+	}
+
+	.title-default{
+		color: #9c2929;
+    	font-size: 1.5rem;
+    	font-weight: 700;
+	}
+
+	.img-default{
+		width: auto !important;
+		max-width: 95%;
+		border: 2px solid #a2a2a2;
+		border-radius: 10px;
+	}
+
+	footer{
+		color:#75061b;
+		font-size: 0.8rem;
+		font-weight: 500;
+		
+	}
+
+	.informacao{
+		font-size: 0.9rem;
+		color: #3b3b3b;
+		font-weight: 500;
+	}
+
+	.social{
+		color: #831b1b;
+		font-size: 1.5rem;
+	}
+	@media (min-width: 576px) {
+		.img-default{
+			max-width: 60%;
+		}
+	}
+
+	@media (min-width: 768px) { 
+		main {
+			padding: 0.5rem 3rem;
+		}
+		.title-default{
+    		font-size: 2rem;
+    	}
+		.img-default{
+			max-width: 95%;
+		}
+		.informacao{
+			font-size: 1rem;
+		}
+		footer{
+			padding: 0.5rem 5vw;
+		}
+	}
+
+	@media (min-width: 992px) {
+		main {
+			padding: 0.5rem 12vw;
+		}
+		.check-text{
+			font-size: 1rem;
+			margin-left: -10px;
+		}
+		.img-default{
+			max-width: 90%;
+		}
+
+		footer{
+			padding: 0.5rem 10vw;
+		}
+	}
+</style>
