@@ -1,6 +1,15 @@
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: []
-});
+  vite: {
+    ssr: {
+      noExternal: ['bootstrap'],
+    }
+  },
+  build: {
+    inlineStylesheets: 'auto'
+  },
+  experimental: {
+    assets: true
+  }
+})

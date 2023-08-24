@@ -1,20 +1,24 @@
 ---
-import Modal from './Modal.astro';
+import Popup from './Popup.astro';
 import Layout from './Layout.astro';
-import { VIDEO_URL, VIDEO_IMAGE } from '../consts';
+import { Image } from 'astro:assets';
+import logo from "../assets/Logo-vermelha-230x90.webp";
+import videoImg from "../assets/Capa-Youtube-1.webp";
+import logoPos from "../assets/Fisioterapia.webp";
+import imageUTI from "../assets/fisio-uti-pratica.webp";
 
 export interface Props {
 	title: string;
     primaryDefault: string;
-    secondDefault:string; 
-    logoPos: string;
-    imageUTI: string;
+    secondDefault: string;
     UTI: string;
     ogImage: string;
     mainPage: string;
 }
 
-const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, mainPage } = Astro.props;
+const VIDEO_ID = "rsvCduomUA8";
+
+const { title, primaryDefault, secondDefault, UTI, ogImage, mainPage } = Astro.props;
 
 ---
 
@@ -23,12 +27,12 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 text-center text-md-start">
-					<img id="navbar-logo" class="" src="/Logo-vermelha-230x90.webp" alt="">
+					<Image src={logo} alt='Logomarca do Núcleo Avançado de Desenvolvimento' id="navbar-logo"> </Image>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-12 text-center">
-					<img id="pos-logo" width="280px" class="pt-4 pt-md-0" src={logoPos} alt="">
+					<Image src={logoPos} alt={title} class="pt-4 pt-md-0" id="pos-logo"> </Image>
 				</div>
 			</div>
 		</div>
@@ -42,11 +46,11 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 						<p class="lead-phrase">A única Pós-Graduação<br>da região com mais<br><span class="imersao">de 55% de imersão </span><br>prática no ambiente da UTI!</p>
 					</div>
 					<div id="video-img">
-						<img class="img-default" src={VIDEO_IMAGE}/>
-						<i class="fa-regular fa-circle-play play"></i>
+						<Image src={videoImg} alt='Capa vídeo Institucional' class="img-default"></Image>
+						<svg class="icon icon-play2 play"><use xlink:href="#icon-play2"></use></svg>
 					 </div>
 					 <div id="video" style="display:none">
-						<iframe id="video-main" src={VIDEO_URL} title="PÓS-GRADUAÇÕES EM SAÚDE: CONHEÇA NOSSA METODOLOGIA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+						<iframe id="video-main" data-video-id={VIDEO_ID} title="PÓS-GRADUAÇÕES EM SAÚDE: CONHEÇA NOSSA METODOLOGIA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					 </div>
 				</div>
 				<div class="col-12 col-lg-6">
@@ -56,7 +60,7 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 					<div class="text-start mt-5 mx-2 mx-sm-4 mx-md-5">
 						<div class="row">
 							<div class="col-1 mt-1">
-								<i class="fa-solid fa-check check"></i>
+								<svg class="icon icon-check1 check"><use xlink:href="#icon-check1"></use></svg>
 							</div>
 							<div class="col-11">
 								<p class="text-start check-text pt-2" >Metodologia pioneira e inovadora;</p>
@@ -64,7 +68,7 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 						</div>
 						<div class="row">
 							<div class="col-1 mt-1">
-								<i class="fa-solid fa-check check"></i>
+								<svg class="icon icon-check1 check"><use xlink:href="#icon-check1"></use></svg>
 							</div>
 							<div class="col-11">
 								<p class="text-start check-text pt-1" >Ambiente de UTI totalmente preparado para os seus Programas de Treinamento.</p>
@@ -84,7 +88,7 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 					</div>
 				</div>
 				<div class="col-12 col-sm-10 col-md-8 col-lg-5 px-4 mx-auto text-center">
-					<img class="img-default" src={imageUTI}/>
+					<Image src={imageUTI} alt=`Imagem de uma prática na ${UTI}` class="img-default"> </Image>
 				</div>
 			</div>
 		</div>
@@ -104,7 +108,7 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 				<div class="col-10 col-sm-8 col-md-5 col-lg-4 my-auto pe-3 pe-md-5">
 					<div class="row">
 						<div class="col-6 col-sm-8 col-md-7 px-0 pb-2 text-end">
-							<i class="fa-solid fa-location-dot address-icon"></i>
+							<svg class="icon icon-location address-icon"><use xlink:href="#icon-location"></use></svg>
 						</div>
 						<div class="col-6 col-sm-4 col-md-5 text-center my-auto px-0">
 							<p class="patio my-auto">PÁTIO CARIRI CORPORATE</p>
@@ -130,12 +134,13 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 		</div>
 	</footer>
 	
-	<Modal href={mainPage} posName={title}></Modal>
+	<Popup href={mainPage} posName={title}></Popup>
 
 	<script>
 		var videoImg = document.getElementById("video-img");
 		videoImg.addEventListener("click", function() {
-			document.getElementById("video-main").src += "?autoplay=1";
+			let videoMain = document.getElementById("video-main");
+			videoMain.src = `https://www.youtube.com/embed/${videoMain.dataset.videoId}?autoplay=1&loop=1&playlist=${videoMain.dataset.videoId}`;
 			videoImg.style.display='none';
 			document.getElementById("video").style.display='block';
 		});
@@ -154,12 +159,18 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 	}
 
 	#navbar-logo {
-		width: 200px;
+		width: 180px;
+		height: auto;
+	}
+
+	#pos-logo{
+		width: 280px;
+		height: auto;
 	}
 
 	.img-default{
-		width: auto !important;
-		max-width: 100%;
+		width: 100%;
+		height: auto;
 	}
 
 	#video-img{
@@ -171,14 +182,6 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 		box-shadow: 0 60px 40px -45px rgba(0,0,0,.68);
 	}
 
-	#video-main{
-		width: 100%;
-		height: 250px;
-		max-height: 100%;
-		border: 5px solid var(--primaryDefault);
-		box-shadow: 0 60px 40px -45px rgba(0,0,0,.68);
-	}
-
 	.play{
 		color: white; 
 		font-size: 60px;
@@ -186,6 +189,28 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+	}
+
+	#video {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		border: 5px solid var(--primaryDefault);
+		box-shadow: 0 60px 40px -45px rgba(0,0,0,.68);
+	}
+
+	#video::after {
+		display: block;
+		content: "";
+		padding-top: 56.25%;
+	}
+
+	#video iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 
 	.lead-phrase{
@@ -202,7 +227,7 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 	.check{
 		color: var(--secondDefault);
 		font-size: 20px;
-		font-weight: 600;
+		font-weight: 800;
 		margin-right: 0px;
 	}
 
@@ -225,7 +250,7 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 	}
 
 	.forma{
-		background-image: url(/forma.webp);
+		background-image: url(../assets/forma.webp);
 		background-position: 0 -350px;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -237,22 +262,22 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 	}
 
 	.text-button{
-		color: var(--primaryDefault);
-		font-size: 0.9rem;
-		font-weight: 500;
+		color: var(--primaryDefault) !important;
+		font-size: 0.9rem !important;
+		font-weight: 500 !important;
 	}
 
 	.btn-popup{
 		background-color: transparent;
-		background-image: linear-gradient(180deg,#24a26b 0,#1ec45a 100%);
-		color: #fff;
-		border-radius: 50px;
-		padding: 15px;
-		width: 190px;
-		font-size: 1.1rem;
-		font-weight: 700;
-		cursor: pointer;
-		transition: all 0.3s ease-in-out;
+		background-image: linear-gradient(180deg,#24a26b 0,#1ec45a 100%)!important;
+		color: #fff !important;
+		border-radius: 50px!important;
+		padding: 15px!important;
+		width: 190px!important;
+		font-size: 1.1rem!important;
+		font-weight: 700!important;
+		cursor: pointer!important;
+		transition: all 0.3s ease-in-out!important;
 	}
 
 	.btn-popup:hover, .btn-popup:active, .btn-popup:focus {
@@ -288,6 +313,10 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 		font-weight: 500;
 	}
 
+
+
+	
+
 	@media (min-width: 576px) {
 		.check-text{
 			margin-left: -15px;
@@ -315,10 +344,12 @@ const { title, primaryDefault, secondDefault, logoPos, imageUTI, UTI, ogImage, m
 
 		#navbar-logo {
 			width: 230px;
+			height: auto;
 		}
 
 		#pos-logo {
 			width: 350px;
+			height: auto;
 		}
 
 		#video-main{

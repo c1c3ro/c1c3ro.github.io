@@ -1,19 +1,26 @@
 ---
 import Layout from '../components/Layout.astro';
 import { WHATSAPP_LINK } from '../consts';
+import { Image } from 'astro:assets';
+import logo from "../assets/Logo-vermelha-230x90.webp";
+import fisioAdulto from "../assets/Fisio-UTI-ADULTO.webp";
+import fisioPedneo from "../assets/fisio-pedneo.jpeg";
+import enfermagemAdulto from "../assets/Enf.-UTI-ADULTO.jpg";
+import enfermagemPedneo from "../assets/enfermagem-pedneo.jpeg";
+import enfermagemObs from "../assets/Enf.-Obs.jpg";
 
-const title="Conheça nossos Eventos e Pós Graduações";
-const ogImage = "";
+const title="Conheça nossos Eventos e Pós-Graduações";
+const ogImage = "https://www.nad-edu.com.br/wp-content/uploads/2023/04/Captura-de-tela-2023-04-12-142354.jpeg";
 
 ---
 
-<Layout title={title} ogImage={ogImage}>
+<Layout title={title} ogImage={ogImage} pos={false} description='Conheça as Pós-Graduações do Núcleo Avançado de Desenvolvimento'>
 	<div class="bg-grey">
 		<header class="p-4">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12 text-center">
-						<img id="navbar-logo" class="" src="/Logo-vermelha-230x90.webp" alt="">
+						<Image src={logo} alt='Logomarca do Núcleo Avançado de Desenvolvimento' id="navbar-logo"> </Image>
 					</div>
 				</div>
 			</div>
@@ -29,23 +36,23 @@ const ogImage = "";
 				<div class="row justify-content-center gx-0 gy-4">
 					<div class="col-12 col-md-6 text-center">
 						<a href="/fisioterapia-uti-lead">
-						<img class="img-default" src="	https://cdn.nad-edu.com.br/wp-content/uploads/2023/08/Fisio-UTI-ADULTO.webp" alt=""></a>
+						<Image src={fisioAdulto} alt='Fisioterapia em Unidade de Terapia Intensiva' class='img-default'></Image></a>
 					</div>
 					<div class="col-12 col-md-6 text-center">
 						<a href="/enfermagem-uti-lead">
-						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/Enf.-UTI-ADULTO.jpg" alt=""></a>
+						<Image src={enfermagemAdulto} alt='Enfermagem em Unidade de Terapia Intensiva' class='img-default'></Image></a>
 					</div>
 					<div class="col-12 col-md-6 text-center">
 						<a href="/enfermagem-obstetricia-lead">
-						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/Enf.-Obs.jpg" alt=""></a>
+						<Image src={enfermagemObs} alt='Enfermagem em Obstetrícia' class='img-default'></Image></a>
 					</div>
 					<div class="col-12 col-md-6 text-center">
 						<a href="/fisioterapia-pedneo-lead">
-						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-01-at-14.31.04.jpeg" alt=""></a>
+						<Image src={fisioPedneo} alt='Fisioterapia em UTI Pediátrica e Neonatal' class='img-default'></Image></a>
 					</div>
 					<div class="col-12 col-md-6 text-center">
 						<a href="/enfermagem-pedneo-lead">
-						<img class="img-default" src="https://cdn.nad-edu.com.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-01-at-14.31.03.jpeg" alt=""></a>
+						<Image src={enfermagemPedneo} alt='Enfermagem UTI Pediátrica e Neonatal' class='img-default'></Image></a>
 					</div>
 					
 				</div>
@@ -55,13 +62,15 @@ const ogImage = "";
 		<footer class="pt-5">
 			<div class="row py-2 px-2">
 				<div class="col-12 col-md-6 text-center text-md-start py-3">
-					<p class="informacao"> Maiores informações: </p>
-					<p class="informacao"> <i class="fa-brands fa-whatsapp social"></i> <span style="font-size: 0.8rem;">88</span> <strong>2131-9977</strong></p>
+					<a href={WHATSAPP_LINK} style="text-decoration: none">
+						<p class="informacao"> Maiores informações: </p>
+						<p class="informacao"> <svg class="icon icon-whatsapp social"><use xlink:href="#icon-whatsapp"></use></svg> <span style="font-size: 0.8rem;">88</span> <strong>2131-9977</strong></p>
+					</a>
 				</div>
 				<div class="col-12 col-md-6 text-center text-md-end my-auto">
 					<p class="informacao">
-					<a href="https://www.facebook.com/nadcariri/?locale=pt_BR"><i class="fa-brands fa-facebook social"></i></a>
-					<a href="https://www.instagram.com/nadcariri/"><i class="fa-brands fa-instagram social px-1"></i></a>
+					<a class="social" href="https://www.facebook.com/nadcariri/?locale=pt_BR"><svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg></a>
+					<a class="social mx-1" href="https://www.instagram.com/nadcariri/"> <svg class="icon icon-instagram"><use xlink:href="#icon-instagram"></use></svg> </a>
 					<span style="font-size: 1.1rem;"><strong>@nad</strong>cariri</span></p>
 				</div>
 			</div>
@@ -94,7 +103,8 @@ const ogImage = "";
 	}
 
 	#navbar-logo {
-		width: 200px;
+		width: 180px;
+		height: auto;
 	}
 
 	.title-default{
@@ -104,8 +114,8 @@ const ogImage = "";
 	}
 
 	.img-default{
-		width: auto !important;
-		max-width: 95%;
+		width: 95%;
+		height: auto;
 		border: 2px solid #a2a2a2;
 		border-radius: 10px;
 	}
@@ -124,13 +134,15 @@ const ogImage = "";
 	}
 
 	.social{
+		text-decoration: none;
 		color: #831b1b;
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 	}
 	@media (min-width: 576px) {
 		.img-default{
-			max-width: 60%;
+			width: 60%;
 		}
+		
 	}
 
 	@media (min-width: 768px) { 
@@ -141,7 +153,7 @@ const ogImage = "";
     		font-size: 2rem;
     	}
 		.img-default{
-			max-width: 95%;
+			width: 95%;
 		}
 		.informacao{
 			font-size: 1rem;
@@ -160,7 +172,7 @@ const ogImage = "";
 			margin-left: -10px;
 		}
 		.img-default{
-			max-width: 90%;
+			width: 90%;
 		}
 
 		footer{
